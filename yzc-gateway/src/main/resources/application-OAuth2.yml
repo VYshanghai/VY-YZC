@@ -1,0 +1,20 @@
+oauth2:
+  ignore-uri:
+    - /actuator/**
+    # swagger2
+    - /**/v2/api-docs
+    - /v2/api-docs
+    - /swagger-ui.html/**
+    - /webjars/**
+    - /swagger-resources/**
+    - /swagger-resources
+    - /doc.html
+    # oauth2
+    - /api-auth/login
+    - /api-auth/login/sms/send
+    - /api-auth/oauth/token
+    - /api-auth/provider/jwt/.well-known/jwks.json
+    # mg
+#    - /api-mg/**
+    # third
+    - /api-third/oss/sts/token

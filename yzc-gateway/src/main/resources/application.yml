@@ -1,0 +1,59 @@
+server:
+  port: 13001
+spring:
+  profiles:
+    include: OAuth2,Swagger2
+    active: SIT
+  application:
+    name: yzc-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 是否可以通过其他服务的serviceId来转发到具体的服务实例。默认为false
+          enabled: true
+      routes:
+        - id: 授权模块
+          uri: lb://yzc-auth
+          order: 13000
+          predicates:
+            - Path=/api-auth/**
+          filters:
+            - Swagger2HeaderFilter
+            - StripPrefix=1
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: 'http://localhost:13000/provider/jwt/.well-known/jwks.json'
+
+eureka:
+  instance:
+    # 此项不填时会造成通过本地域名访问 feign 从而 404
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8002/eureka
+      #Eureka客户端向服务端发送心跳的时间间隔，单位为秒（客户端告诉服务端自己会按照该规则）
+      #租约续订间隔时间（默认30秒），如下所示每间隔 5s 向服务端发送一次心跳，证明自己依然"存活"
+      lease-renewal-interval-in-seconds: 3 # 5秒一次心跳
+      #Eureka服务端在收到最后一次心跳之后等待的时间上限，单位为秒，超过则剔除（客户端告诉服务端按照此规则等待自己）
+      # 租约到期时间（默认90秒），如下所示，告诉服务端如果我 6s 之内没有给你发心跳，就代表我"死"了，将我踢出掉
+      lease-expiration-duration-in-seconds: 6
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "threaddump,heapdump,health,info,service-registry,shutdown"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    shutdown:
+      enabled: true
+
+logging:
+  config: classpath:log4j2.yml

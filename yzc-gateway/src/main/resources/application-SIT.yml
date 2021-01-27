@@ -1,0 +1,6 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: 'http://localhost:13001/api-auth/provider/jwt/.well-known/jwks.json'

@@ -1,0 +1,31 @@
+server:
+  port: 8002
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone:
+        http://${eureka.instance.hostname}:${server.port}/eureka/
+    server:
+      # 关闭自我保护机制
+      enable-self-preservation: false
+      #驱逐计时器扫描失效服务的间隔时间（默认为60*1000ms）
+      eviction-interval-timer-in-ms: 3000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #"threaddump,heapdump,health,info,service-registry,shutdown,prometheus"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    shutdown:
+      enabled: true
+
+spring:
+  application:
+    name: yzc-eureka

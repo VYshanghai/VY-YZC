@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.vy.yzc</groupId>
+  <artifactId>VY-YZC</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <modules>
+    <module>yzc-web</module>
+    <module>yzc-auth</module>
+    <module>yzc-gateway</module>
+    <module>yzc-eureka</module>
+  </modules>
+
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.7.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <spring-boot-start.version>2.1.7.RELEASE</spring-boot-start.version>
+    <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+    <!-- security -->
+    <spring-security-oauth2.version>2.3.6.RELEASE</spring-security-oauth2.version>
+    <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
+    <nimbus-jose-jwt.version>8.2</nimbus-jose-jwt.version>
+
+    <!-- database start -->
+    <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
+    <mysql-connector-java.version>8.0.17</mysql-connector-java.version>
+    <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
+    <mybatis-plus-core.version>3.3.2</mybatis-plus-core.version>
+    <!-- database end -->
+    <!-- tool package version start -->
+    <fastjson.version>1.2.70</fastjson.version> <!-- 漏洞修复版 -->
+    <commons-lang3.version>3.6</commons-lang3.version>
+    <commons-net.version>3.6</commons-net.version>
+    <commons-collections4.version>4.4</commons-collections4.version>
+    <commons-codec.version>1.13</commons-codec.version>
+    <guava.version>20.0</guava.version>
+    <hibernate-validator.version>6.0.14.Final</hibernate-validator.version>
+    <io.springfox.swagger>2.9.2</io.springfox.swagger>
+    <knife4j.version>2.0.4</knife4j.version>
+    <jackson-databind.version>2.9.9</jackson-databind.version>
+    <jackson-dataformat-yaml.version>2.9.9</jackson-dataformat-yaml.version>
+    <protobuf-java.version>3.12.0</protobuf-java.version>
+    <!-- tool package version end -->
+    <!-- docker -->
+    <docker.repository>registry-vpc.cn-beijing.aliyuncs.com</docker.repository>
+    <docker.registry.name>visva</docker.registry.name>
+    <docker-maven-plugin.version>1.1.1</docker-maven-plugin.version>
+    <!-- git -->
+    <git-commit-id-plugin.version>2.2.1</git-commit-id-plugin.version>
+
+    <!-- vy-basic -->
+    <basic-tool.version>1.9.0-SNAPSHOT</basic-tool.version>
+    <basic-web.version>1.9.0-SNAPSHOT</basic-web.version>
+    <basic-redis.version>1.9.0-SNAPSHOT</basic-redis.version>
+
+
+    <!--pagehelper-->
+    <pagehelper.version>1.2.12</pagehelper.version>
+
+    <!--fastJson-->
+    <fastjson.version>1.2.47</fastjson.version>
+
+    <!-- yzc start -->
+    <yzc-web.version>1.0.0-SNAPSHOT</yzc-web.version>
+    <!-- yzc end -->
+  </properties>
+
+  <!-- 依赖的仓库地址 -->
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+    <repository>
+      <id>central</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <!-- 是否开启发布版构件下载 -->
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <!-- 是否开启快照版构件下载 -->
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <!-- 基础依赖工具包 -->
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-net</groupId>
+      <artifactId>commons-net</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+    </dependency>
+    <dependency>
+      <!--for the annotations. -->
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- 版本管理 -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson-databind.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>${commons-net.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${commons-collections4.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>${commons-codec.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate-validator.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.visva</groupId>
+        <artifactId>basic-tool</artifactId>
+        <version>${basic-tool.version}</version>
+        <exclusions>
+          <!--和mybatisplus 不兼容 -->
+          <exclusion>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>com.visva</groupId>
+        <artifactId>basic-web</artifactId>
+        <version>${basic-web.version}</version>
+      </dependency>
+      <!-- swagger2 start -->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${io.springfox.swagger}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${io.springfox.swagger}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-spring-boot-starter</artifactId>
+        <version>${knife4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+        <version>${knife4j.version}</version>
+      </dependency>
+      <!-- swagger2 end -->
+      <!-- database start -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybatis-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql-connector-java.version}</version>
+      </dependency>
+      <!-- database end -->
+      <!-- log4j2 start -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot-start.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-log4j2</artifactId>
+        <version>${spring-boot-start.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-web -->
+      <dependency>  <!-- 加上这个才能辨认到log4j2.yml文件 -->
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-yaml</artifactId>
+        <version>${jackson-dataformat-yaml.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security.oauth</groupId>
+        <artifactId>spring-security-oauth2</artifactId>
+        <version>${spring-security-oauth2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-jwt</artifactId>
+        <version>${spring-security-jwt.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>${nimbus-jose-jwt.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-parent</artifactId>
+        <version>${protobuf-java.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>${protobuf-java.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus-releases</id>
+      <url>https://nexus.visvachina.com/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>https://nexus.visvachina.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

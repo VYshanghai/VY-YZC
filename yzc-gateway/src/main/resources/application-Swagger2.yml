@@ -1,0 +1,7 @@
+swagger2:
+  version: 2.0
+  doc-api: /v2/api-docs
+  filter: Swagger2HeaderFilter
+  generated-name-prefix: 0
+  replace-target: /**
+  predicate: Path
