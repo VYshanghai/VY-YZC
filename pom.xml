@@ -13,6 +13,7 @@
     <module>yzc-auth</module>
     <module>yzc-gateway</module>
     <module>yzc-eureka</module>
+    <module>yzc-bg</module>
   </modules>
 
 
