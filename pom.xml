@@ -14,6 +14,9 @@
     <module>yzc-gateway</module>
     <module>yzc-eureka</module>
     <module>yzc-bg</module>
+    <module>yzc-third</module>
+    <module>yzc-api</module>
+    <module>yzc-eo</module>
   </modules>
 
 

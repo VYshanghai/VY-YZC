@@ -1,0 +1,13 @@
+swagger2:
+  port: ${server.port}
+  api:
+    title: YZC-THIRD
+    description: 第三方接口服务
+    contact:
+      name: xxx
+      url: xxx
+      email: xxx
+    version: 1.0.0
+  base-api-packages:
+    - com.vy.yzc.third.interfaces.facade
+    - com.vy.yzc.third.interfaces.provider

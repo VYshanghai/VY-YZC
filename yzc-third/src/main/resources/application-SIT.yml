@@ -1,0 +1,10 @@
+mybatis-plus:
+  configuration:
+  # 打印执行的sql（测试环境下使用）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  redis:
+    database: 11
+    host: visva-sit.redis.rds.aliyuncs.com
+#    host: r-2zee54f9c0c25de4.redis.rds.aliyuncs.com
