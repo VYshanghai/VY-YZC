@@ -8,7 +8,10 @@ import com.vy.yzc.third.infrastructure.User;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import lombok.AllArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.GeoDistanceQueryBuilder;
@@ -80,4 +83,6 @@ public class TestEsServiceImpl implements TestEsService {
 		}
 		System.out.println(user.toString());
 	}
+
+
 }

@@ -38,6 +38,9 @@ spring:
         min-idle: 0
         max-wait: 2ms
     timeout: 5000ms
+  data:
+    elasticsearch:
+      cluster-nodes: localhost:9300
 
 mybatis-plus:
   global-config:
@@ -69,6 +72,9 @@ eureka:
       lease-expiration-duration-in-seconds: 6
 
 management:
+  health:
+    elasticsearch:
+      enabled: false
   endpoints:
     web:
       exposure:
