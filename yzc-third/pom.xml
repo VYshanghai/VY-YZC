@@ -72,6 +72,11 @@
       <artifactId>basic-redis</artifactId>
       <version>${basic-redis.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.visva</groupId>
+      <artifactId>basic-elasticsearch</artifactId>
+      <version>${basic-elasticsearch.version}</version>
+    </dependency>
 
     <!--阿里服务 start-->
     <dependency>
@@ -140,6 +145,13 @@
       <scope>test</scope>
     </dependency>
     <!--单元测试end-->
+
+
+<!--    <dependency>-->
+<!--      <groupId>io.netty</groupId>-->
+<!--      <artifactId>netty-all</artifactId>-->
+<!--      <version>4.1.13.Final</version>-->
+<!--    </dependency>-->
 
   </dependencies>
 
